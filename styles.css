@@ -55,7 +55,7 @@ header input:focus {
     box-shadow: 0 0 12px rgba(249, 115, 22, 0.4);
 }
 
-/* Estilos del Carrusel de Fotos */
+/* Carrusel */
 .carrusel-container {
     max-width: 1000px;
     position: relative;
@@ -127,6 +127,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .card:hover {
@@ -163,6 +164,59 @@ main {
     font-size: 0.8rem;
     border-top: 1px solid #f1f5f9;
     padding-top: 10px;
+}
+
+/* Vista Detallada Interactiva */
+.detalle-modal {
+    flex: 1;
+    padding: 3rem 5%;
+    max-width: 800px;
+    margin: 2rem auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.detalle-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+    border-left: 6px solid var(--accent);
+}
+
+.btn-volver {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    transition: background 0.2s;
+}
+
+.btn-volver:hover {
+    background: #1e293b;
+}
+
+.detalle-card h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin: 15px 0;
+}
+
+.detalle-card p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--text-main);
+}
+
+.detalle-info-extra {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+    color: var(--text-muted);
 }
 
 footer {

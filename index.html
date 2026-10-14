@@ -11,11 +11,11 @@
         <h1>Electromecánica App</h1>
         <p>Sistema educativo e interactivo sobre sistemas, componentes y aplicaciones electromecánicas.</p>
         <div class="search-container">
-            <input type="text" id="buscador" placeholder="🔍 Escribe para buscar (ej. motores, sensores, robótica)...">
+            <input type="text" id="buscador" placeholder="🔍 Escribe un tema y presiona ENTER (ej. motores, sensores)...">
         </div>
     </header>
 
-    <!-- Carrusel de imágenes electromecánicas -->
+    <!-- Carrusel Ampliado de Fotos -->
     <section class="carrusel-container">
         <div class="carrusel-slide fade">
             <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80" alt="Automatización y Sensores">
@@ -29,14 +29,37 @@
             <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80" alt="Robótica y Control">
             <div class="carrusel-caption">Robótica y Control Inteligente de Procesos</div>
         </div>
+        <div class="carrusel-slide fade">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="Circuitos y Electrónica">
+            <div class="carrusel-caption">Integración de Circuitos Eléctricos y Mecánicos</div>
+        </div>
+        <div class="carrusel-slide fade">
+            <img src="https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1200&q=80" alt="Mantenimiento Industrial">
+            <div class="carrusel-caption">Mantenimiento y Seguridad en Plantas Industriales</div>
+        </div>
     </section>
 
-    <main>
+    <!-- Vista Principal (Catálogo) -->
+    <main id="vista-catalogo">
         <h2 style="color: #0f172a; margin-bottom: 1.5rem; border-left: 5px solid #f97316; padding-left: 10px;">Catálogo de Contenidos</h2>
         <section id="contenedor-tarjetas" class="grid-tarjetas">
-            <!-- Las tarjetas se cargan dinámicamente -->
+            <!-- Tarjetas dinámicas -->
         </section>
     </main>
+
+    <!-- Vista Detallada Interactiva (Se oculta por defecto) -->
+    <div id="vista-detalle" class="detalle-modal" style="display: none;">
+        <div class="detalle-card">
+            <button id="btn-cerrar" class="btn-volver">← Volver al Catálogo</button>
+            <span id="detalle-categoria" class="categoria">Categoría</span>
+            <h2 id="detalle-titulo">Título del Tema</h2>
+            <p id="detalle-descripcion">Descripción completa del sistema electromecánico...</p>
+            <div class="detalle-info-extra">
+                <p><strong>Fuente académica:</strong> <span id="detalle-fuente">Fuente</span></p>
+                <p><strong>Estado del sistema:</strong> <span style="color: #10b981; font-weight: bold;">Activo y Verificado</span></p>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2026 - Electromecánica App | Desarrollado para Programación Digital</p>

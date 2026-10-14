@@ -1,4 +1,3 @@
-// Datos directos garantizados con tildes y palabras clave robustas
 const todosLosDatos = [
     { id: 1, titulo: "¿Qué es la electromecánica?", categoria: "Investigación", descripcion: "Área que integra conocimientos de electricidad y mecánica para desarrollar y mantener sistemas.", fuente: "Fuente académica" },
     { id: 2, titulo: "Historia de la electromecánica", categoria: "Investigación", descripcion: "Evolución de la electromecánica y sus principales avances tecnológicos.", fuente: "Fuente académica" },
@@ -22,7 +21,6 @@ const todosLosDatos = [
     { id: 20, titulo: "Fuentes de información", categoria: "Fuentes", descripcion: "Referencias utilizadas para respaldar la información presentada en la aplicación.", fuente: "Fuentes académicas" }
 ];
 
-// Función para normalizar texto (eliminar tildes y pasar a minúsculas para búsqueda perfecta)
 function normalizar(texto) {
     return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
@@ -32,7 +30,7 @@ function mostrarTarjetas(items) {
     contenedor.innerHTML = '';
 
     if (items.length === 0) {
-        contenedor.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: #64748b; font-size: 1.1rem; padding: 2rem;">No se encontraron resultados para tu búsqueda. Intenta con otra palabra clave.</p>';
+        contenedor.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; color: #64748b; font-size: 1.1rem; padding: 2rem;">No se encontraron resultados. Intenta con otra palabra clave.</p>';
         return;
     }
 
@@ -45,53 +43,76 @@ function mostrarTarjetas(items) {
             <p>${item.descripcion}</p>
             <small>Fuente: ${item.fuente}</small>
         `;
+        
+        // Al hacer clic en una tarjeta, abre la vista detallada interactiva
+        tarjeta.addEventListener('click', () => abrirDetalle(item));
         contenedor.appendChild(tarjeta);
     });
 }
 
-// Buscador robusto e infalible
+function abrirDetalle(item) {
+    document.getElementById('vista-catalogo').style.display = 'none';
+    document.querySelector('.carrusel-container').style.display = 'none';
+    
+    document.getElementById('detalle-categoria').innerText = item.categoria;
+    document.getElementById('detalle-titulo').innerText = item.titulo;
+    document.getElementById('detalle-descripcion').innerText = item.descripcion;
+    document.getElementById('detalle-fuente').innerText = item.fuente;
+    
+    document.getElementById('vista-detalle').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.getElementById('btn-cerrar').addEventListener('click', () => {
+    document.getElementById('vista-detalle').style.display = 'none';
+    document.getElementById('vista-catalogo').style.display = 'block';
+    document.querySelector('.carrusel-container').style.display = 'block';
+});
+
+// Buscador en tiempo real y acción al presionar ENTER
 const inputBuscador = document.getElementById('buscador');
 inputBuscador.addEventListener('input', (e) => {
     const textoBusqueda = normalizar(e.target.value.trim());
-    
     if (textoBusqueda === "") {
         mostrarTarjetas(todosLosDatos);
         return;
     }
-
     const filtrados = todosLosDatos.filter(item => 
         normalizar(item.titulo).includes(textoBusqueda) || 
         normalizar(item.descripcion).includes(textoBusqueda) ||
         normalizar(item.categoria).includes(textoBusqueda)
     );
-    
     mostrarTarjetas(filtrados);
 });
 
 inputBuscador.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         e.preventDefault();
+        const textoBusqueda = normalizar(inputBuscador.value.trim());
+        const encontrado = todosLosDatos.find(item => 
+            normalizar(item.titulo).includes(textoBusqueda) || 
+            normalizar(item.descripcion).includes(textoBusqueda)
+        );
+        if (encontrado) {
+            abrirDetalle(encontrado);
+        }
     }
 });
 
-// Lógica del Carrusel de Fotos Automático
+// Carrusel automático
 let slideIndex = 0;
 function mostrarCarrusel() {
     let slides = document.getElementsByClassName("carrusel-slide");
     if (slides.length === 0) return;
-    
     for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";  
     }
-    
     slideIndex++;
     if (slideIndex > slides.length) { slideIndex = 1 }    
-    
     slides[slideIndex - 1].style.display = "block";  
-    setTimeout(mostrarCarrusel, 3500); // Cambia de imagen cada 3.5 segundos
+    setTimeout(mostrarCarrusel, 3500);
 }
 
-// Inicializar aplicación
 document.addEventListener("DOMContentLoaded", () => {
     mostrarTarjetas(todosLosDatos);
     mostrarCarrusel();
