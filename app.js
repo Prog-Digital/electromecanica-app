@@ -1,4 +1,4 @@
-import { supabase } from './upabaseClient.js';
+import { supabase } from './supabaseClient.js';
 
 let todosLosDatos = [];
 
