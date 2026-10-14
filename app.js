@@ -60,4 +60,4 @@ inputBuscador.addEventListener('keydown', (e) => {
     }
 });
 
-cargarContenido();
+mostrarTarjetas(todosLosDatos);
