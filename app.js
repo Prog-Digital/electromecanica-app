@@ -1,33 +1,54 @@
-import { supabase } from './supabaseClient.js';
+import { supabase } from './upabaseClient.js';
+
+let todosLosDatos = [];
 
 async function cargarContenido() {
-    const contenedor = document.getElementById('contenedor-tarjetas') || document.querySelector('main');
+    const contenedor = document.getElementById('contenedor-tarjetas');
     
     let { data: items, error } = await supabase
         .from('contenido')
         .select('*');
 
     if (error) {
-        contenedor.innerHTML = `<p>Error al cargar datos: ${error.message}</p>`;
+        contenedor.innerHTML = `<p>Error al conectar con la base de datos: ${error.message}</p>`;
         return;
     }
 
-    contenedor.innerHTML = ''; 
+    todosLosDatos = items;
+    mostrarTarjetas(todosLosDatos);
+}
+
+function mostrarTarjetas(items) {
+    const contenedor = document.getElementById('contenedor-tarjetas');
+    contenedor.innerHTML = '';
+
+    if (items.length === 0) {
+        contenedor.innerHTML = '<p>No se encontraron resultados.</p>';
+        return;
+    }
 
     items.forEach(item => {
         const tarjeta = document.createElement('div');
-        tarjeta.style.border = "1px solid #ccc";
-        tarjeta.style.padding = "15px";
-        tarjeta.style.margin = "10px 0";
-        tarjeta.style.borderRadius = "8px";
+        tarjeta.className = 'card';
         tarjeta.innerHTML = `
-            <span style="background: #e2e8f0; padding: 3px 8px; font-size: 12px; border-radius: 4px;">${item.categoria}</span>
-            <h3 style="margin-top: 10px;">${item.titulo}</h3>
+            <span class="categoria">${item.categoria}</span>
+            <h3>${item.titulo}</h3>
             <p>${item.descripcion}</p>
-            <small style="color: #666;">Fuente: ${item.fuente}</small>
+            <small style="color: #64748b;">Fuente: ${item.fuente}</small>
         `;
         contenedor.appendChild(tarjeta);
     });
 }
+
+// Filtro de búsqueda en tiempo real
+document.getElementById('buscador').addEventListener('input', (e) => {
+    const texto = e.target.value.toLowerCase();
+    const filtrados = todosLosDatos.filter(item => 
+        item.titulo.toLowerCase().includes(texto) || 
+        item.descripcion.toLowerCase().includes(texto) ||
+        item.categoria.toLowerCase().includes(texto)
+    );
+    mostrarTarjetas(filtrados);
+});
 
 cargarContenido();
