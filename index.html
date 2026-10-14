@@ -10,12 +10,31 @@
     <header>
         <h1>Electromecánica App</h1>
         <p>Sistema educativo e interactivo sobre sistemas, componentes y aplicaciones electromecánicas.</p>
-        <input type="text" id="buscador" placeholder="Buscar temas, motores, sensores...">
+        <div class="search-container">
+            <input type="text" id="buscador" placeholder="🔍 Escribe para buscar (ej. motores, sensores, robótica)...">
+        </div>
     </header>
 
+    <!-- Carrusel de imágenes electromecánicas -->
+    <section class="carrusel-container">
+        <div class="carrusel-slide fade">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80" alt="Automatización y Sensores">
+            <div class="carrusel-caption">Tecnología y Automatización Industrial de Vanguardia</div>
+        </div>
+        <div class="carrusel-slide fade">
+            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80" alt="Motores y Componentes">
+            <div class="carrusel-caption">Motores y Sistemas Electromecánicos Eficientes</div>
+        </div>
+        <div class="carrusel-slide fade">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80" alt="Robótica y Control">
+            <div class="carrusel-caption">Robótica y Control Inteligente de Procesos</div>
+        </div>
+    </section>
+
     <main>
+        <h2 style="color: #0f172a; margin-bottom: 1.5rem; border-left: 5px solid #f97316; padding-left: 10px;">Catálogo de Contenidos</h2>
         <section id="contenedor-tarjetas" class="grid-tarjetas">
-            <p>Cargando información desde Supabase...</p>
+            <!-- Las tarjetas se cargan dinámicamente -->
         </section>
     </main>
 

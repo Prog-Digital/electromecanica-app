@@ -21,7 +21,7 @@ body {
 header {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     color: white;
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem;
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -39,9 +39,9 @@ header p {
 }
 
 header input {
-    padding: 12px 20px;
+    padding: 14px 24px;
     width: 90%;
-    max-width: 500px;
+    max-width: 550px;
     border-radius: 30px;
     border: 2px solid transparent;
     font-size: 1rem;
@@ -52,12 +52,59 @@ header input {
 
 header input:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.4);
+}
+
+/* Estilos del Carrusel de Fotos */
+.carrusel-container {
+    max-width: 1000px;
+    position: relative;
+    margin: 2rem auto 1rem auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    background: #000;
+}
+
+.carrusel-slide {
+    display: none;
+    position: relative;
+}
+
+.carrusel-slide img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85);
+}
+
+.carrusel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(15, 23, 42, 0.9));
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from { opacity: .4 }
+    to { opacity: 1 }
 }
 
 main {
     flex: 1;
-    padding: 2.5rem 5%;
+    padding: 2rem 5%;
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
@@ -74,7 +121,7 @@ main {
     background: var(--card-bg);
     border-radius: 12px;
     padding: 1.8rem;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -4px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-top: 4px solid var(--accent);
     display: flex;
@@ -84,7 +131,7 @@ main {
 
 .card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
 }
 
 .categoria {
@@ -96,7 +143,6 @@ main {
     font-weight: 700;
     text-transform: uppercase;
     align-self: flex-start;
-    letter-spacing: 0.5px;
 }
 
 .card h3 {
@@ -126,4 +172,10 @@ footer {
     color: #94a3b8;
     font-size: 0.9rem;
     margin-top: auto;
+}
+
+@media(max-width: 768px) {
+    .carrusel-slide img {
+        height: 200px;
+    }
 }
